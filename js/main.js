@@ -9,6 +9,7 @@ btnplay.addEventListener('click', function() {
     punteggio.innerHTML = '';
     generateGrid(selectDom.value);
     count = 1;
+    playing = true;
 });
         
 function generateGrid(level) {
@@ -51,20 +52,21 @@ function generateGrid(level) {
     }
 }
 
-let count = 1;
-
+let count = 0;
+let playing = true;
 function changeBg(mysquare) {
     mysquare.addEventListener('click', function() {
-        punteggio.innerHTML = `<h2>Il tuo Punteggio è: ${count++} </h2>`;
-        if (bombs.includes(parseInt(mysquare.innerHTML))) {
-            this.classList.add('bg_red');
-            alert('HAI PERSO!');
-            grigliaElementi.innerHTML = '';
-            punteggio.innerHTML = '';
-        } else {
-            this.classList.add('bg_blue');
-        }
-         
+        if (playing) {
+            if (bombs.includes(parseInt(mysquare.innerHTML))) {
+                this.classList.add('bg_red');
+                playing = false;
+            } else{
+                this.classList.add('bg_blue');
+            }
+            punteggio.innerHTML = `<h2>Il tuo Punteggio è: ${count++} </h2>`;
+            
+        } 
+            
         console.log(mysquare.innerHTML);
         
     });

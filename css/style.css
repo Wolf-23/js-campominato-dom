@@ -42,15 +42,15 @@
 main {
     background-color: #7FFFD4;
     height: 90vh;
-    padding-top: 150px;
+    padding-top: 75px;
 }
 
 #grid {
     display: flex;
     flex-wrap: wrap;
     margin: auto;
-    width: 800px;
-    height: 800px;
+    width: 600px;
+    height: +600px;
     align-content: flex-start;
 }
 
