@@ -1,10 +1,14 @@
 let btnplay = document.getElementById('play');
 let grigliaElementi = document.getElementById('grid');
 let selectDom = document.getElementById('difficulty');
+let punteggio = document.getElementById('punteggio');
+let bombs = [];
 
 btnplay.addEventListener('click', function() {
     grigliaElementi.innerHTML = '';
+    punteggio.innerHTML = '';
     generateGrid(selectDom.value);
+    count = 1;
 });
         
 function generateGrid(level) {
@@ -27,22 +31,43 @@ function generateGrid(level) {
         break;
     }
 
-    for (x = 1; x <= cicles; x++ ) {
+    bombs = [];
+    
+    for (let i = 1; i <= 16; i++) {
+        const generateBombs = generateRandomNum(bombs, 1, cicles);
+        bombs.push(generateBombs);
+    }
+    
+    console.log(bombs);
+    
+    for (let x = 1; x <= cicles; x++ ) {
         let mySquare = generateSquare();
         mySquare.append(x);
         mySquare.classList.add(addedClass);
         grigliaElementi.append(mySquare);
         
-        changeBgBlue(mySquare);
+        changeBg(mySquare);
+        
+    }
+}
 
-    }
-    
-    function changeBgBlue(mysquare) {
-        mysquare.addEventListener('click', function() {
-            this.classList.toggle('bg_blue');
-            console.log(mysquare.innerHTML);
-        });
-    }
+let count = 1;
+
+function changeBg(mysquare) {
+    mysquare.addEventListener('click', function() {
+        punteggio.innerHTML = `<h2>Il tuo Punteggio è: ${count++} </h2>`;
+        if (bombs.includes(parseInt(mysquare.innerHTML))) {
+            this.classList.add('bg_red');
+            alert('HAI PERSO!');
+            grigliaElementi.innerHTML = '';
+            punteggio.innerHTML = '';
+        } else {
+            this.classList.add('bg_blue');
+        }
+         
+        console.log(mysquare.innerHTML);
+        
+    });
 }
 
 function generateSquare() {
@@ -51,3 +76,15 @@ function generateSquare() {
     return square;
 }
 
+function generateRandomNum(numeriUsati, min, max) {
+    let validNum = false;
+    let randomNum;
+    while (!validNum) {
+        randomNum = Math.floor(Math.random() * ( max - min + 1)) + min;
+
+        if (numeriUsati.includes(randomNum) == false) {
+            validNum = true;
+        }
+    }
+    return randomNum;
+}

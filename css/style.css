@@ -67,6 +67,15 @@ main {
     background-color: rgb(70, 203, 247);
 }
 
+.bg_red {
+    background-color: red;
+}
+
+#punteggio {
+    display: flex;
+    justify-content: center;
+    padding-top: 20px;
+}
 .wh-10 {
     width: calc(100% / 10);
     height: calc(100% / 10);
