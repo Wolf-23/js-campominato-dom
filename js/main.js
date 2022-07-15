@@ -62,8 +62,8 @@ function changeBg(mysquare) {
                 playing = false;
             } else{
                 this.classList.add('bg_blue');
+                punteggio.innerHTML = `<h2>Il tuo Punteggio è: ${count++} </h2>`;
             }
-            punteggio.innerHTML = `<h2>Il tuo Punteggio è: ${count++} </h2>`;
             
         } 
             
