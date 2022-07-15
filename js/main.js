@@ -60,6 +60,8 @@ function changeBg(mysquare) {
             if (bombs.includes(parseInt(mysquare.innerHTML))) {
                 this.classList.add('bg_red');
                 playing = false;
+                punteggio.innerHTML = `<h2>Hai perso!! Il tuo Punteggio è: ${count - 1} </h2>`;
+
             } else{
                 this.classList.add('bg_blue');
                 punteggio.innerHTML = `<h2>Il tuo Punteggio è: ${count++} </h2>`;
